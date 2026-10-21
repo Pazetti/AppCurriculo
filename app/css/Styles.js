@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   tela: { flex: 1, backgroundColor: cores.fundo },
   header: { backgroundColor: cores.primaria },
   headerTitulo: { color: '#fff', fontWeight: 'bold' },
+  headerUsuario: { color: '#fff', fontSize: 14, maxWidth: 160, marginRight: 4 },
   centro: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 },
   vazio: { textAlign: 'center', color: cores.suave, marginTop: 40, paddingHorizontal: 24 },
 

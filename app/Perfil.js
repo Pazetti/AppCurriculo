@@ -63,7 +63,10 @@ export function Perfil({ navigation }) {
     <View style={styles.tela}>
       <Appbar.Header style={styles.header}>
         <Appbar.BackAction iconColor="white" onPress={() => navigation.navigate('Home')} />
-        <Appbar.Content title="Área administrativa" subtitle={`Olá, ${usuario.nome}`} titleStyle={styles.headerTitulo} />
+        <Appbar.Content title="Área administrativa" titleStyle={styles.headerTitulo} />
+        <Text style={styles.headerUsuario} numberOfLines={1}>
+          {usuario.nome}
+        </Text>
         <Appbar.Action icon="logout" iconColor="white" onPress={sair} />
       </Appbar.Header>
 
