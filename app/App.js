@@ -20,6 +20,7 @@ import Acesso from './Acesso';
 import Login from './Login';
 import Cadastro from './Cadastro';
 import { Perfil } from './Perfil';
+import MinhaConta from './MinhaConta';
 import FormCurriculo from './FormCurriculo';
 import Detalhe from './Detalhe';
 import { CabecalhoMenu } from './CabecaMenu';
@@ -36,7 +37,8 @@ function StackNavigator() {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Cadastro" component={Cadastro} />
       <Stack.Screen name="Detalhe" component={Detalhe} />
-      {/* Área administrativa (protegida dentro de cada tela) */}
+      {/* Telas do usuário logado (protegidas dentro de cada tela) */}
+      <Stack.Screen name="MinhaConta" component={MinhaConta} />
       <Stack.Screen name="Perfil" component={Perfil} />
       <Stack.Screen name="FormCurriculo" component={FormCurriculo} />
     </Stack.Navigator>
@@ -65,6 +67,7 @@ function MenuLateral(props) {
         <PaperDrawer.Item label="Pesquisar" icon="magnify" onPress={() => ir('Pesquisa')} />
         {usuario ? (
           <>
+            <PaperDrawer.Item label="Meu perfil" icon="account-circle" onPress={() => ir('MinhaConta')} />
             <PaperDrawer.Item label="Área administrativa" icon="view-dashboard" onPress={() => ir('Perfil')} />
             <PaperDrawer.Item label="Novo currículo" icon="file-plus" onPress={() => ir('FormCurriculo')} />
             <PaperDrawer.Item label="Sair" icon="logout" onPress={sair} />

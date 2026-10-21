@@ -9,7 +9,7 @@ const gerarToken = (id) =>
 
 const emailValido = (e) => /^\S+@\S+\.\S+$/.test(e);
 
-const publico = (u) => ({ id: u.id, nome: u.nome, email: u.email });
+const publico = (u) => ({ id: u.id, nome: u.nome, email: u.email, criadoEm: u.createdAt });
 
 // POST /api/auth/cadastro
 router.post('/cadastro', async (req, res) => {

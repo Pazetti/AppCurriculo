@@ -53,6 +53,15 @@ export const styles = StyleSheet.create({
   itemTitulo: { fontWeight: 'bold', color: cores.texto },
   itemSub: { color: cores.suave },
 
+  // meu perfil
+  perfilCard: { backgroundColor: '#fff', borderRadius: 12, padding: 20, alignItems: 'center', elevation: 1 },
+  perfilNome: { fontWeight: 'bold', color: cores.texto, marginTop: 10, textAlign: 'center' },
+  perfilDivisor: { alignSelf: 'stretch', marginVertical: 14 },
+  perfilLinha: { flexDirection: 'row', alignItems: 'center', alignSelf: 'stretch', gap: 12, marginBottom: 12 },
+  perfilIcone: { backgroundColor: '#e6eef8' },
+  perfilRotulo: { color: cores.suave, fontSize: 12 },
+  perfilValor: { color: cores.texto, fontSize: 15 },
+
   // menu lateral
   menuCabeca: { backgroundColor: cores.primaria, padding: 20, paddingTop: 48 },
   menuNome: { color: '#fff', fontWeight: 'bold', marginTop: 10 },

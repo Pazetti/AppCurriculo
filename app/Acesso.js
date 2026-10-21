@@ -4,12 +4,12 @@ import { Appbar, Button, Text, Avatar } from 'react-native-paper';
 import { styles } from './css/Styles';
 import { useAuth } from './AuthContext';
 
-// Ícone de conta: logado -> área administrativa; deslogado -> escolher entrar/cadastrar
+// Ícone de conta: logado -> meu perfil; deslogado -> escolher entrar/cadastrar
 const Acesso = ({ navigation }) => {
   const { usuario } = useAuth();
 
   useEffect(() => {
-    if (usuario) navigation.replace('Perfil');
+    if (usuario) navigation.replace('MinhaConta');
   }, [usuario]);
 
   return (
