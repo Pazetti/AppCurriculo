@@ -31,7 +31,7 @@ const Cadastro = ({ navigation }) => {
     setErro('');
     try {
       await cadastrar(nome.trim(), email.trim(), senha); // já entra logado
-      navigation.replace('Perfil');
+      navigation.replace('MinhaConta');
     } catch (e) {
       setErro(e.message);
     } finally {

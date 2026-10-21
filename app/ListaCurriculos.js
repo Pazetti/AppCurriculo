@@ -6,7 +6,7 @@ import { styles } from './css/Styles';
 import { useAuth } from './AuthContext';
 import { api } from './api';
 
-// Lista reutilizável (Home, Pesquisa e Área administrativa).
+// Lista reutilizável (Home, Pesquisa e Meu perfil).
 // Cuida de editar / excluir / abrir detalhe.
 export default function ListaCurriculos({ dados, carregando, onAtualizar, navigation, vazio, cabecalho }) {
   const { usuario } = useAuth();
@@ -32,6 +32,7 @@ export default function ListaCurriculos({ dados, carregando, onAtualizar, naviga
   return (
     <>
       <FlatList
+        keyboardShouldPersistTaps="handled"
         data={dados}
         keyExtractor={(i) => i._id}
         contentContainerStyle={styles.lista}

@@ -71,4 +71,46 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
+// PUT /api/auth/me  (edita os dados do usuário logado)
+// Aceita nome, email e, opcionalmente, novaSenha (exige senhaAtual).
+router.put('/me', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+    if (!user) return res.status(401).json({ erro: 'Usuário não encontrado.' });
+
+    const { nome, email, senhaAtual, novaSenha } = req.body;
+
+    if (nome !== undefined) {
+      if (!String(nome).trim()) return res.status(400).json({ erro: 'Informe o nome.' });
+      user.nome = String(nome).trim();
+    }
+
+    if (email !== undefined) {
+      const emailNorm = String(email).toLowerCase().trim();
+      if (!emailValido(emailNorm)) return res.status(400).json({ erro: 'E-mail inválido.' });
+      if (emailNorm !== user.email) {
+        const outro = await User.findOne({ email: emailNorm, _id: { $ne: user._id } });
+        if (outro) return res.status(409).json({ erro: 'Já existe uma conta com esse e-mail.' });
+        user.email = emailNorm;
+      }
+    }
+
+    if (novaSenha) {
+      if (String(novaSenha).length < 6) {
+        return res.status(400).json({ erro: 'A nova senha deve ter pelo menos 6 caracteres.' });
+      }
+      if (!senhaAtual || !(await bcrypt.compare(String(senhaAtual), user.senha))) {
+        return res.status(401).json({ erro: 'Senha atual incorreta.' });
+      }
+      user.senha = await bcrypt.hash(String(novaSenha), 10);
+    }
+
+    await user.save();
+    res.json({ usuario: publico(user) });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ erro: 'Erro ao atualizar dados.' });
+  }
+});
+
 module.exports = router;

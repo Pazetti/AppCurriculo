@@ -15,13 +15,13 @@ curriculos/
 | Requisito | Implementação |
 |---|---|
 | Cadastro de usuário | `Cadastro.jsx` → `POST /api/auth/cadastro` (senha com bcrypt) |
-| Login (só autenticados acessam a área administrativa) | `Login.jsx` → `POST /api/auth/login` (JWT); `Perfil.js` e `FormCurriculo.js` bloqueiam quem não está logado; rotas de escrita da API exigem token |
+| Login (só autenticados acessam a área do usuário) | `Login.jsx` → `POST /api/auth/login` (JWT); `MinhaConta.js` e `FormCurriculo.js` bloqueiam quem não está logado; rotas de escrita da API exigem token. Após login/cadastro o app abre em **Meu perfil** |
 | Nome do usuário no menu | `CabecaMenu.js` (cabeçalho do menu lateral) |
-| Área administrativa (cadastrar e gerenciar conteúdo) | `Perfil.js` (lista “meus currículos”) + `FormCurriculo.js` (novo/editar) |
+| Meu perfil (dados da conta + gerenciar conteúdo) | `MinhaConta.js` (dados editáveis do usuário e lista “meus currículos”) + `FormCurriculo.js` (novo/editar) |
 | Gerenciamento de imagens (editar / excluir quando autenticado) | `Cards.js`: botões **Editar** e **Excluir** só aparecem para o usuário logado dono do currículo; `FormCurriculo.js` permite trocar/remover a foto |
 | Não autenticados só visualizam | Home, Pesquisa e Detalhe são públicos e sem botões de edição/exclusão |
 | Pesquisa por termo | `Pesquisa.js` → `GET /api/curriculos?busca=termo` (nome, cargo, cidade, resumo, habilidades, empresas, cursos) |
-| Novas telas | `Detalhe.js`, `FormCurriculo.js`, `Acesso.js`, `Perfil.js` |
+| Novas telas | `Detalhe.js`, `FormCurriculo.js`, `Acesso.js`, `MinhaConta.js` |
 
 ## Como rodar
 
@@ -59,6 +59,7 @@ Edite `app/config.js` conforme onde for testar:
 | POST | `/api/auth/cadastro` | público | cria usuário e já devolve o token |
 | POST | `/api/auth/login` | público | autentica e devolve o token |
 | GET | `/api/auth/me` | token | dados do usuário logado |
+| PUT | `/api/auth/me` | token | edita nome, e-mail e (opcional) senha — `novaSenha` exige `senhaAtual` |
 | GET | `/api/curriculos?busca=` | público | lista / pesquisa currículos |
 | GET | `/api/curriculos/:id` | público | detalhe de um currículo |
 | GET | `/api/curriculos/meus` | token | currículos do usuário logado |

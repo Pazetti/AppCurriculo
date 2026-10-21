@@ -39,6 +39,13 @@ export function AuthProvider({ children }) {
   const cadastrar = async (nome, email, senha) =>
     iniciarSessao(await api.cadastrar({ nome, email, senha }));
 
+  // edita nome / e-mail / senha do usuário logado e atualiza o estado
+  const atualizarPerfil = async (dados) => {
+    const { usuario: u } = await api.atualizarPerfil(dados);
+    setUsuario(u);
+    return u;
+  };
+
   const logout = async () => {
     setToken(null);
     await AsyncStorage.removeItem(CHAVE);
@@ -46,7 +53,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ usuario, carregando, login, cadastrar, logout }}>
+    <AuthContext.Provider value={{ usuario, carregando, login, cadastrar, atualizarPerfil, logout }}>
       {children}
     </AuthContext.Provider>
   );

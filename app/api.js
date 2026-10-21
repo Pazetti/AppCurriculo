@@ -30,6 +30,7 @@ export const api = {
   cadastrar: (dados) => request('/auth/cadastro', { method: 'POST', body: dados }),
   login: (dados) => request('/auth/login', { method: 'POST', body: dados }),
   me: () => request('/auth/me'),
+  atualizarPerfil: (dados) => request('/auth/me', { method: 'PUT', body: dados }),
 
   // currículos
   listar: (busca = '') => request(`/curriculos?busca=${encodeURIComponent(busca)}`),

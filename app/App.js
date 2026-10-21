@@ -19,7 +19,6 @@ import Pesquisa from './Pesquisa';
 import Acesso from './Acesso';
 import Login from './Login';
 import Cadastro from './Cadastro';
-import { Perfil } from './Perfil';
 import MinhaConta from './MinhaConta';
 import FormCurriculo from './FormCurriculo';
 import Detalhe from './Detalhe';
@@ -30,7 +29,7 @@ const Drawer = createDrawerNavigator();
 
 function StackNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={AppBar} />
       <Stack.Screen name="Pesquisa" component={Pesquisa} />
       <Stack.Screen name="Acesso" component={Acesso} />
@@ -39,7 +38,6 @@ function StackNavigator() {
       <Stack.Screen name="Detalhe" component={Detalhe} />
       {/* Telas do usuário logado (protegidas dentro de cada tela) */}
       <Stack.Screen name="MinhaConta" component={MinhaConta} />
-      <Stack.Screen name="Perfil" component={Perfil} />
       <Stack.Screen name="FormCurriculo" component={FormCurriculo} />
     </Stack.Navigator>
   );
@@ -68,7 +66,6 @@ function MenuLateral(props) {
         {usuario ? (
           <>
             <PaperDrawer.Item label="Meu perfil" icon="account-circle" onPress={() => ir('MinhaConta')} />
-            <PaperDrawer.Item label="Área administrativa" icon="view-dashboard" onPress={() => ir('Perfil')} />
             <PaperDrawer.Item label="Novo currículo" icon="file-plus" onPress={() => ir('FormCurriculo')} />
             <PaperDrawer.Item label="Sair" icon="logout" onPress={sair} />
           </>

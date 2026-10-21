@@ -21,7 +21,7 @@ const Login = ({ navigation }) => {
     setErro('');
     try {
       await login(email.trim(), senha);
-      navigation.replace('Perfil'); // área administrativa
+      navigation.replace('MinhaConta'); // meu perfil
     } catch (e) {
       setErro(e.message);
     } finally {
